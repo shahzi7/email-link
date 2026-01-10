@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Send Email</title>
+</head>
+<body>
+  <h2>Send Salary Review Email</h2>
+
+  <button onclick="openEmail()">Open Email App</button>
+
+  <script>
+    function openEmail() {
+      window.location.href =
+        "mailto:mudassirmazhar19@gmail.com" +
+        "?subject=Request%20for%20Salary%20Review" +
+        "&body=Dear%20Sir%2FMadam%2C%0A%0AI%20hope%20you%20are%20doing%20well.%0A%0AI%20would%20like%20to%20respectfully%20request%20a%20review%20of%20my%20current%20salary.%0A%0AThank%20you.%0A%0AKind%20regards%2C%0A";
+    }
+  </script>
+</body>
+</html>
