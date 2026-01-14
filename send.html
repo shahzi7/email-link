@@ -42,7 +42,7 @@
 
     .send-btn {
       width: 100%;
-      padding: 15px;
+      padding: 16px;
       font-size: 16px;
       font-weight: bold;
       border: none;
@@ -53,22 +53,13 @@
     }
 
     .send-btn:active {
-      transform: scale(0.98);
+      transform: scale(0.97);
     }
 
     .note {
       margin-top: 18px;
       font-size: 13px;
       color: #666;
-    }
-
-    .fallback {
-      margin-top: 18px;
-      font-size: 13px;
-      color: #444;
-      background: #f4f4f4;
-      padding: 10px;
-      border-radius: 6px;
     }
   </style>
 </head>
@@ -78,32 +69,27 @@
     <h1>Send Email</h1>
 
     <p>
-      Click the button below to open your email application with a
-      pre-written message requesting salary revision for paramedical staff.
+      Click the button below to open Gmail with a pre-written email
+      requesting salary revision for paramedical staff of Sindh.
     </p>
 
-    <!-- ✅ GUARANTEED BUTTON -->
-    <button class="send-btn" onclick="openEmail()">
-      Open Email App & Send
+    <!-- ✅ GMAIL COMPOSE BUTTON -->
+    <button class="send-btn" onclick="openGmail()">
+      Send Email via Gmail
     </button>
 
     <div class="note">
-      If the email app does not open, please ensure you are using
-      Chrome browser and have Gmail or another email app installed.
-    </div>
-
-    <div class="fallback">
-      If the email still does not open, please send the email manually to:<br>
-      <strong>ceopphisindh@gmail.com</strong>
+      This works on all devices, even inside WhatsApp or Instagram browser.
     </div>
   </div>
 
-  <!-- ✅ JAVASCRIPT (FORCES EMAIL APP) -->
+  <!-- ✅ JAVASCRIPT -->
   <script>
-    function openEmail() {
+    function openGmail() {
       window.location.href =
-        "mailto:ceopphisindh@gmail.com" +
-        "?subject=Request%20for%20Salary%20Revision%20of%20Paramedical%20Staff" +
+        "https://mail.google.com/mail/?view=cm&fs=1" +
+        "&to=ceopphisindh@gmail.com" +
+        "&su=Request%20for%20Salary%20Revision%20of%20Paramedical%20Staff" +
         "&body=Dear%20Sir%2C%0A%0AWe%2C%20the%20Paramedical%20Staff%20of%20Sindh%2C%20respectfully%20wish%20to%20draw%20your%20kind%20attention%20to%20an%20important%20issue%20regarding%20salary%20revision.%0A%0AWe%20sincerely%20appreciate%20the%20recent%20increase%20in%20salaries%20for%20lower%20staff%20such%20as%20peons%20and%20other%20support%20staff.%20This%20decision%20reflects%20concern%20for%20employees%20and%20is%20highly%20commendable.%0A%0AHowever%2C%20dispensers%20and%20other%20paramedical%20staff%20were%20not%20included%20in%20this%20salary%20enhancement.%20On%20ground%20reality%2C%20it%20is%20not%20possible%20to%20run%20hospital%20operations%20without%20dispensers.%20Dispensers%20play%20a%20vital%20role%20in%20medicine%20handling%2C%20store%20keeping%2C%20inventory%20management%2C%20record%20maintenance%2C%20and%20smooth%20coordination%20of%20hospital%20services.%20Without%20dispensers%2C%20the%20daily%20working%20of%20a%20hospital%20becomes%20extremely%20difficult.%0A%0AFurthermore%2C%20due%20to%20rising%20inflation%20and%20increasing%20daily%20life%20expenses%20such%20as%20food%2C%20utilities%2C%20transportation%2C%20and%20household%20needs%2C%20it%20has%20become%20very%20challenging%20for%20paramedical%20staff%20to%20manage%20their%20responsibilities%20on%20current%20salaries.%0A%0AIn%20light%20of%20these%20facts%2C%20we%20humbly%20request%20your%20kind%20consideration%20to%20review%20the%20salaries%20of%20dispensers%20and%20include%20paramedical%20staff%20in%20the%20recent%20pay%20increase.%0A%0AThank%20you%20for%20your%20time%20and%20understanding.%0A%0AYours%20sincerely%2C%0AAll%20Paramedical%20Staff%20of%20Sindh";
     }
   </script>
