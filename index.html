@@ -1,22 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Send Email</title>
+  <meta charset="UTF-8">
+  <title>Submit Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 30px;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 12px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      font-size: 14px;
+      color: #555;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #1e3c72;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #16305d;
+    }
+  </style>
 </head>
 <body>
-  <h2>Send Salary Review Email</h2>
 
-  <button onclick="openEmail()">Open Email App</button>
+  <div class="card">
+    <h2>Submit Your Details</h2>
+
+    <form id="detailsForm">
+      <label>Name *</label>
+      <input type="text" id="name" required>
+
+      <label>Designation (optional)</label>
+      <input type="text" id="designation">
+
+      <label>Address (optional)</label>
+      <textarea id="address" rows="3"></textarea>
+
+      <button type="submit">Continue</button>
+    </form>
+  </div>
 
   <script>
-    function openEmail() {
-      window.location.href =
-        "mailto:ceopphisindh@gmail.com?subject=Request%20for%20Salary%20Revision%20of%20Paramedical%20Staff&body=Dear%20Sir%2C%0A%0AWe%20hope%20this%20message%20finds%20you%20in%20good%20health.%0A%0AWe%2C%20the%20paramedical%20staff%20serving%20across%20Sindh%2C%20respectfully%20wish%20to%20bring%20to%20your%20kind%20attention%20the%20issue%20of%20salary%20revision.%20In%20the%20current%20economic%20situation%2C%20the%20cost%20of%20living%20has%20increased%20significantly.%20Basic%20expenses%20such%20as%20food%2C%20rent%2C%20utilities%2C%20transportation%2C%20and%20healthcare%20have%20become%20increasingly%20difficult%20to%20manage%20on%20existing%20salaries.%0A%0AWe%20appreciate%20the%20recent%20salary%20increase%20granted%20to%20lower%20staff%2C%20including%20peons%20and%20other%20support%20staff.%20However%2C%20dispensers%20and%20other%20paramedical%20staff%20were%20not%20included%20in%20this%20revision.%0A%0AWe%20therefore%20request%20your%20kind%20consideration%20for%20a%20fair%20salary%20revision.%0A%0AThank%20you%20for%20your%20time.%0A%0AYours%20sincerely%2C%0AAll%20Sindh%20Paramedical%20Staff";
-    }
+    document.getElementById("detailsForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = encodeURIComponent(document.getElementById("name").value);
+      const designation = encodeURIComponent(document.getElementById("designation").value);
+      const address = encodeURIComponent(document.getElementById("address").value);
+
+      // Store temporarily in URL
+      window.location.href = 
+        "send.html?name=" + name +
+        "&designation=" + designation +
+        "&address=" + address;
+    });
   </script>
+
 </body>
 </html>
-
-
-
-
