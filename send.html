@@ -8,88 +8,93 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .container {
-      background: #ffffff;
-      width: 90%;
-      max-width: 520px;
+    .card {
+      background: white;
       padding: 30px;
-      border-radius: 14px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      width: 100%;
+      max-width: 460px;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
       text-align: center;
     }
 
-    h1 {
-      margin-top: 0;
-      color: #0a7cff;
-      font-size: 24px;
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
     }
 
     p {
-      font-size: 15px;
-      color: #333;
-      line-height: 1.6;
-      margin-bottom: 25px;
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 20px;
     }
 
-    .send-btn {
-      width: 100%;
-      padding: 16px;
-      font-size: 16px;
+    .count {
+      font-size: 18px;
       font-weight: bold;
+      margin-bottom: 25px;
+      color: #1e3c72;
+    }
+
+    button {
+      padding: 14px 25px;
+      font-size: 16px;
+      background: #2a5298;
+      color: white;
       border: none;
       border-radius: 8px;
-      background: #0a7cff;
-      color: #fff;
       cursor: pointer;
     }
 
-    .send-btn:active {
-      transform: scale(0.97);
-    }
-
-    .note {
-      margin-top: 18px;
-      font-size: 13px;
-      color: #666;
+    button:hover {
+      background: #1e3c72;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Send Email</h1>
+  <div class="card">
+    <h2>Send Email</h2>
+    <p>Your details are ready. Click below to open your email app.</p>
 
-    <p>
-      Click the button below to open Gmail with a pre-written email
-      requesting salary revision for paramedical staff of Sindh.
-    </p>
+    <!-- TEMP COUNTER (static for now) -->
+    <div class="count">Total emails sent: 0</div>
 
-    <!-- ✅ GMAIL COMPOSE BUTTON -->
-    <button class="send-btn" onclick="openGmail()">
-      Send Email
-    </button>
+    <button onclick="openEmail()">Open Email App</button>
+  </div>
 
-  <!-- ✅ JAVASCRIPT -->
-<script>
-function openGmail() {
-  window.location.href =
-    "intent://compose/#Intent;" +
-    "scheme=mailto;" +
-    "S.to=ceopphisindh@gmail.com;" +
-    "S.subject=Request for Salary Revision of Paramedical Staff;" +
-    "S.body=Dear Sir,%0A%0AWe, the Paramedical Staff of Sindh, respectfully wish to draw your kind attention to an important issue regarding salary revision.%0A%0AWe sincerely appreciate the recent increase in salaries for lower staff such as peons and other support staff. However, dispensers and paramedical staff were not included.%0A%0ADispensers are essential for hospital operations including medicine handling, store keeping, inventory management, and record maintenance. Without dispensers, hospitals cannot function properly.%0A%0AFurthermore, rising inflation and daily life expenses have made it very difficult for paramedical staff to manage their responsibilities.%0A%0AWe humbly request your kind consideration for a salary review of dispensers and paramedical staff.%0A%0AYours sincerely,%0AAll Paramedical Staff of Sindh;" +
-    "end";
-}
-</script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name") || "Not provided";
+    const designation = params.get("designation") || "Not provided";
+    const address = params.get("address") || "Not provided";
+
+    function openEmail() {
+      const body =
+        "Dear Sir,%0A%0A" +
+        "We, the Paramedical Staff of Sindh, respectfully wish to draw your kind attention to an important issue regarding salary revision.%0A%0A" +
+        "We sincerely appreciate the recent increase in salaries for lower staff such as peons and other support staff. This decision reflects concern for employees and is highly commendable.%0A%0A" +
+        "However, dispensers and other paramedical staff were not included in this salary enhancement. On ground reality, it is not possible to run hospital operations without dispensers.%0A%0A" +
+        "Dispensers play a vital role in medicine handling, store keeping, inventory management, record maintenance, and smooth coordination of hospital services. Without dispensers, the daily working of a hospital becomes extremely difficult.%0A%0A" +
+        "Furthermore, due to rising inflation and increasing daily life expenses such as food, utilities, transportation, and household needs, it has become very challenging for paramedical staff to manage their responsibilities on current salaries.%0A%0A" +
+        "In light of these facts, we humbly request your kind consideration to review the salaries of dispensers and include paramedical staff in the recent pay increase.%0A%0A"
+        "Yours sincerely,%0A" +
+        "All Paramedical Staff of Sindh";
+
+      window.location.href =
+        "mailto:ceopphisindh@gmail.com" +
+        "?subject=Request%20for%20Salary%20Revision%20of%20Paramedical%20Staff" +
+        "&body=" + body;
+    }
+  </script>
 
 </body>
 </html>
