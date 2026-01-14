@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Send Email</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      width: 100%;
+      max-width: 460px;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .count {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      color: #1e3c72;
+    }
+
+    button {
+      padding: 14px 25px;
+      font-size: 16px;
+      background: #2a5298;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1e3c72;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Send Email</h2>
+    <p>Your details are ready. Click below to open your email app.</p>
+
+    <!-- TEMP COUNTER (static for now) -->
+    <div class="count">Total emails sent: 0</div>
+
+    <button onclick="openEmail()">Open Email App</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name") || "";
+    const designation = params.get("designation") || "";
+    const address = params.get("address") || "";
+
+    function openEmail() {
+      const body =
+        "Dear Sir/Madam,%0A%0A" +
+        "I hope you are doing well.%0A%0A" +
+        "I would like to respectfully request a review of my current salary.%0A%0A" +
+        "Details:%0A" +
+        "Name: " + name + "%0A" +
+        "Designation: " + designation + "%0A" +
+        "Address: " + address + "%0A%0A" +
+        "Thank you for your time and consideration.%0A%0A" +
+        "Kind regards";
+
+      window.location.href =
+        "mailto:mudassirmazhar19@gmail.com" +
+        "?subject=Request%20for%20Salary%20Review" +
+        "&body=" + body;
+    }
+  </script>
+
+</body>
+</html>
