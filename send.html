@@ -61,40 +61,67 @@
 </head>
 <body>
 
-  <div class="card">
-    <h2>Send Email</h2>
-    <p>Your details are ready. Click below to open your email app.</p>
+<div class="card">
+  <h2>Send Email</h2>
+  <p>Your information is ready. Click below to open your email app.</p>
 
-    <!-- TEMP COUNTER (static for now) -->
-    <div class="count">Total emails sent: 0</div>
+  <div class="count">Record will be saved automatically</div>
 
-    <button onclick="openEmail()">Open Email App</button>
-  </div>
+  <button onclick="openEmail()">Open Email App</button>
+</div>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const name = params.get("name") || "Not provided";
-    const designation = params.get("designation") || "Not provided";
-    const address = params.get("address") || "Not provided";
+<!-- 🔥 FIREBASE SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-    function openEmail() {
-      const body =
-        "Dear Sir,%0A%0A" +
-        "We, the Paramedical Staff of Sindh, respectfully wish to draw your kind attention to an important issue regarding salary revision.%0A%0A" +
-        "We sincerely appreciate the recent increase in salaries for lower staff such as peons and other support staff. This decision reflects concern for employees and is highly commendable.%0A%0A" +
-        "However, dispensers and other paramedical staff were not included in this salary enhancement. On ground reality, it is not possible to run hospital operations without dispensers.%0A%0A" +
-        "Dispensers play a vital role in medicine handling, store keeping, inventory management, record maintenance, and smooth coordination of hospital services. Without dispensers, the daily working of a hospital becomes extremely difficult.%0A%0A" +
-        "Furthermore, due to rising inflation and increasing daily life expenses such as food, utilities, transportation, and household needs, it has become very challenging for paramedical staff to manage their responsibilities on current salaries.%0A%0A" +
-        "In light of these facts, we humbly request your kind consideration to review the salaries of dispensers and include paramedical staff in the recent pay increase.%0A%0A" +
-        "Yours sincerely,%0A" +
-        "All Paramedical Staff of Sindh";
+<script>
+  // 🔴 REPLACE THESE WITH YOUR REAL FIREBASE CONFIG
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID"
+  };
 
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // GET FORM DATA
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get("name") || "";
+  const designation = params.get("designation") || "";
+  const address = params.get("address") || "";
+
+  function openEmail() {
+
+    const body =
+      "Respected Sir,%0A%0A" +
+      "We, the Paramedical Staff of Sindh, would like to respectfully bring to your attention an important matter regarding salary revision.%0A%0A" +
+      "Recently, the salaries of lower staff such as peons and other support staff have been increased, which is a commendable step. However, dispensers were not included in this revision.%0A%0A" +
+      "Dispensers play a critical role in hospital operations, including medicine handling, store keeping, patient coordination, and record maintenance. On-ground reality shows that hospitals cannot function effectively without dispensers.%0A%0A" +
+      "In the current economic conditions and rising daily life expenses, it has become extremely difficult for dispensers to manage household responsibilities.%0A%0A" +
+      "We humbly request you to kindly review and revise the salaries of dispensers to reflect their responsibilities and contribution to the healthcare system.%0A%0A" +
+      "Yours sincerely,%0A" +
+      "Paramedical Staff of Sindh";
+
+    // SAVE RECORD TO FIREBASE FIRST
+    db.collection("emails").add({
+      name: name,
+      designation: designation,
+      address: address,
+      time: new Date()
+    })
+    .then(() => {
+      // OPEN EMAIL APP
       window.location.href =
         "mailto:info@pphisindh.org.pk" +
         "?subject=Request%20for%20Salary%20Revision%20of%20Paramedical%20Staff" +
         "&body=" + body;
-    }
-  </script>
+    })
+    .catch(() => {
+      alert("Error saving record. Please try again.");
+    });
+  }
+</script>
 
 </body>
 </html>
