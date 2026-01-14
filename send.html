@@ -65,21 +65,23 @@
   <h2>Send Email</h2>
   <p>Your information is ready. Click below to open your email app.</p>
 
-  <div class="count">Record will be saved automatically</div>
+  <div class="count">
+    Total emails sent: <span id="emailCount">Loading...</span>
+  </div>
 
   <button onclick="openEmail()">Open Email App</button>
 </div>
 
-<!-- 🔥 FIREBASE SDK -->
+<!-- FIREBASE SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
-  // 🔴 REPLACE THESE WITH YOUR REAL FIREBASE CONFIG
+  // 🔴 REPLACE WITH YOUR REAL CONFIG
   const firebaseConfig = {
-    apiKey: "AIzaSyBwY_vqGi2XHCtT7B88yrC0upryyVeMhS0",
-    authDomain: "paramedicalstaffrecord.firebaseapp.com",
-    projectId: "paramedicalstaffrecord"
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID"
   };
 
   firebase.initializeApp(firebaseConfig);
@@ -91,19 +93,23 @@
   const designation = params.get("designation") || "";
   const address = params.get("address") || "";
 
+  // 🔥 LIVE COUNTER
+  db.collection("emails").onSnapshot(snapshot => {
+    document.getElementById("emailCount").innerText = snapshot.size;
+  });
+
   function openEmail() {
 
     const body =
       "Respected Sir,%0A%0A" +
-      "We, the Paramedical Staff of Sindh, would like to respectfully bring to your attention an important matter regarding salary revision.%0A%0A" +
-      "Recently, the salaries of lower staff such as peons and other support staff have been increased, which is a commendable step. However, dispensers were not included in this revision.%0A%0A" +
-      "Dispensers play a critical role in hospital operations, including medicine handling, store keeping, patient coordination, and record maintenance. On-ground reality shows that hospitals cannot function effectively without dispensers.%0A%0A" +
-      "In the current economic conditions and rising daily life expenses, it has become extremely difficult for dispensers to manage household responsibilities.%0A%0A" +
-      "We humbly request you to kindly review and revise the salaries of dispensers to reflect their responsibilities and contribution to the healthcare system.%0A%0A" +
+      "We, the Paramedical Staff of Sindh, respectfully request a revision of salaries.%0A%0A" +
+      "Recently, salaries of lower staff such as peons and support staff were increased. However, dispensers were not included.%0A%0A" +
+      "Dispensers manage medicine handling, store keeping, records, and day-to-day hospital operations. Ground reality shows that hospitals cannot function without dispensers.%0A%0A" +
+      "Considering rising daily life expenses, we request a fair salary revision.%0A%0A" +
       "Yours sincerely,%0A" +
       "Paramedical Staff of Sindh";
 
-    // SAVE RECORD TO FIREBASE FIRST
+    // SAVE TO FIRESTORE
     db.collection("emails").add({
       name: name,
       designation: designation,
@@ -111,14 +117,14 @@
       time: new Date()
     })
     .then(() => {
-      // OPEN EMAIL APP
       window.location.href =
         "mailto:info@pphisindh.org.pk" +
         "?subject=Request%20for%20Salary%20Revision%20of%20Paramedical%20Staff" +
         "&body=" + body;
     })
-    .catch(() => {
-      alert("Error saving record. Please try again.");
+    .catch(error => {
+      alert("Record not saved. Check Firebase setup.");
+      console.error(error);
     });
   }
 </script>
