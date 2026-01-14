@@ -2,100 +2,106 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Send Email</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send Email</title>
 
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      height: 100vh;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: #fff;
     }
 
-    .card {
-      background: white;
+    .container {
+      background: #ffffff;
+      color: #333;
+      max-width: 500px;
+      width: 90%;
       padding: 30px;
-      width: 100%;
-      max-width: 460px;
       border-radius: 12px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
       text-align: center;
     }
 
-    h2 {
-      color: #333;
-      margin-bottom: 10px;
+    h1 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #0a7cff;
     }
 
     p {
-      color: #555;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .count {
-      font-size: 18px;
-      font-weight: bold;
+      font-size: 15px;
+      line-height: 1.6;
       margin-bottom: 25px;
-      color: #1e3c72;
     }
 
-    button {
-      padding: 14px 25px;
-      font-size: 16px;
-      background: #2a5298;
-      color: white;
-      border: none;
+    .send-btn {
+      display: inline-block;
+      padding: 15px 24px;
+      background: #0a7cff;
+      color: #fff;
+      text-decoration: none;
       border-radius: 8px;
-      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background 0.2s ease, transform 0.1s ease;
     }
 
-    button:hover {
-      background: #1e3c72;
+    .send-btn:hover {
+      background: #055fd6;
+    }
+
+    .send-btn:active {
+      transform: scale(0.97);
+    }
+
+    .note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .counter {
+      margin-top: 25px;
+      padding-top: 15px;
+      border-top: 1px solid #ddd;
+      font-size: 14px;
+      color: #444;
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <h2>Send Email</h2>
-    <p>Your details are ready. Click below to open your email app.</p>
+  <div class="container">
+    <h1>Send Email</h1>
 
-    <!-- TEMP COUNTER (static for now) -->
-    <div class="count">Total emails sent: 0</div>
+    <p>
+      Click the button below to open your email application with a pre-written
+      message addressed to the CEO regarding the salary revision of
+      paramedical staff.
+    </p>
 
-    <button onclick="openEmail()">Open Email App</button>
+    <!-- ✅ WORKING MAILTO BUTTON -->
+    <a href="mailto:ceopphisindh@gmail.com?subject=Request%20for%20Salary%20Revision%20of%20Paramedical%20Staff&body=Dear%20Sir%2C%0A%0AWe%2C%20the%20Paramedical%20Staff%20of%20Sindh%2C%20respectfully%20wish%20to%20draw%20your%20kind%20attention%20to%20an%20important%20issue%20regarding%20salary%20revision.%0A%0AWe%20sincerely%20appreciate%20the%20recent%20increase%20in%20salaries%20for%20lower%20staff%20such%20as%20peons%20and%20other%20support%20staff.%20This%20decision%20reflects%20concern%20for%20employees%20and%20is%20highly%20commendable.%0A%0AHowever%2C%20dispensers%20and%20other%20paramedical%20staff%20were%20not%20included%20in%20this%20salary%20enhancement.%20On%20ground%20reality%2C%20it%20is%20not%20possible%20to%20run%20hospital%20operations%20without%20dispensers.%20Dispensers%20play%20a%20vital%20role%20in%20medicine%20handling%2C%20store%20keeping%2C%20inventory%20management%2C%20record%20maintenance%2C%20and%20smooth%20coordination%20of%20hospital%20services.%20Without%20dispensers%2C%20the%20daily%20working%20of%20a%20hospital%20becomes%20extremely%20difficult.%0A%0AFurthermore%2C%20due%20to%20rising%20inflation%20and%20increasing%20daily%20life%20expenses%20such%20as%20food%2C%20utilities%2C%20transportation%2C%20and%20household%20needs%2C%20it%20has%20become%20very%20challenging%20for%20paramedical%20staff%20to%20manage%20their%20responsibilities%20on%20current%20salaries.%0A%0AIn%20light%20of%20these%20facts%2C%20we%20humbly%20request%20your%20kind%20consideration%20to%20review%20the%20salaries%20of%20dispensers%20and%20include%20paramedical%20staff%20in%20the%20recent%20pay%20increase.%20This%20step%20would%20greatly%20motivate%20staff%20and%20improve%20overall%20healthcare%20service%20delivery.%0A%0AThank%20you%20for%20your%20time%20and%20understanding.%0A%0AYours%20sincerely%2C%0AAll%20Paramedical%20Staff%20of%20Sindh"
+       class="send-btn">
+      Open Email App & Send
+    </a>
+
+    <div class="note">
+      If the email app does not open, please ensure you are using a browser
+      (Chrome recommended) and have an email app installed.
+    </div>
+
+    <div class="counter">
+      📊 Total Emails Sent: <strong>Coming Soon</strong>
+    </div>
   </div>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const name = params.get("name") || "";
-    const designation = params.get("designation") || "";
-    const address = params.get("address") || "";
-
-    function openEmail() {
-const body =
-  "Dear Sir,%0A%0A" +
-  "I hope you are doing well.%0A%0A" +
-  "I am writing to respectfully request a review of my current salary. I have observed that salary increments have recently been granted to other staff members, including lower-grade staff such as peons.%0A%0A" +
-  "While I truly appreciate the organization’s efforts in supporting its employees, I would like to humbly request that my performance, responsibilities, and dedication also be reviewed for a possible salary increase.%0A%0A" +
-  "I have consistently fulfilled my duties with sincerity and commitment, and I believe a review would be both motivating and encouraging.%0A%0A" +
-  "Submitted Details:%0A" +
-  "Name: " + name + "%0A" +
-  "Designation: " + designation + "%0A" +
-  "Address: " + address + "%0A%0A" +
-  "Thank you for your time and consideration.%0A%0A" +
-  "Kind regards";
-    window.location.href =
-  "mailto:ceopphisindh@gmail.com"
-?subject=Request%20for%20Salary%20Revision%20of%20Paramedical%20Staff
-&body=Dear%20Sir%2C%0A%0AWe%2C%20the%20Paramedical%20Staff%20of%20Sindh%2C%20respectfully%20wish%20to%20draw%20your%20kind%20attention%20to%20an%20important%20issue%20regarding%20salary%20revision.%0A%0AWe%20sincerely%20appreciate%20the%20recent%20increase%20in%20salaries%20for%20lower%20staff%20such%20as%20peons%20and%20other%20support%20staff.%20This%20decision%20reflects%20concern%20for%20employees%20and%20is%20highly%20commendable.%0A%0AHowever%2C%20dispensers%20and%20other%20paramedical%20staff%20were%20not%20included%20in%20this%20salary%20enhancement.%20On%20ground%20reality%2C%20it%20is%20not%20possible%20to%20run%20hospital%20operations%20without%20dispensers.%20Dispensers%20play%20a%20vital%20role%20in%20medicine%20handling%2C%20store%20keeping%2C%20inventory%20management%2C%20record%20maintenance%2C%20and%20smooth%20coordination%20of%20hospital%20services.%20Without%20dispensers%2C%20the%20daily%20working%20of%20a%20hospital%20becomes%20extremely%20difficult.%0A%0AFurthermore%2C%20due%20to%20rising%20inflation%20and%20increasing%20daily%20life%20expenses%20such%20as%20food%2C%20utilities%2C%20transportation%2C%20and%20household%20needs%2C%20it%20has%20become%20very%20challenging%20for%20paramedical%20staff%20to%20manage%20their%20responsibilities%20on%20current%20salaries.%0A%0AIn%20light%20of%20these%20facts%2C%20we%20humbly%20request%20your%20kind%20consideration%20to%20review%20the%20salaries%20of%20dispensers%20and%20include%20paramedical%20staff%20in%20the%20recent%20pay%20increase.%20This%20step%20would%20greatly%20motivate%20staff%20and%20improve%20overall%20healthcare%20service%20delivery.%0A%0AThank%20you%20for%20your%20time%20and%20understanding.%0A%0AYours%20sincerely%2C%0AAll%20Paramedical%20Staff%20of%20Sindh;
-    }
-  </script>
 
 </body>
 </html>
