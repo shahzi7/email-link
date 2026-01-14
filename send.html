@@ -78,11 +78,12 @@
     const address = params.get("address") || "";
 
     function openEmail() {
-      const body =
+const body =
   "Dear Sir,%0A%0A" +
-  "I hope this message finds you well.%0A%0A" +
-  "I am writing to respectfully request a review of my current salary. Over time, I have consistently worked with dedication, taken on additional responsibilities, and remained committed to delivering strong results aligned with the company’s goals.%0A%0A" +
-  "I believe my performance, growth, and contributions justify consideration for a salary increase. I would greatly appreciate the opportunity to discuss this matter at your convenience.%0A%0A" +
+  "I hope you are doing well.%0A%0A" +
+  "I am writing to respectfully request a review of my current salary. I have observed that salary increments have recently been granted to other staff members, including lower-grade staff such as peons.%0A%0A" +
+  "While I truly appreciate the organization’s efforts in supporting its employees, I would like to humbly request that my performance, responsibilities, and dedication also be reviewed for a possible salary increase.%0A%0A" +
+  "I have consistently fulfilled my duties with sincerity and commitment, and I believe a review would be both motivating and encouraging.%0A%0A" +
   "Submitted Details:%0A" +
   "Name: " + name + "%0A" +
   "Designation: " + designation + "%0A" +
@@ -90,8 +91,8 @@
   "Thank you for your time and consideration.%0A%0A" +
   "Kind regards";
 
-     window.location.href =
-  "mailto:mudassirmazhar19@gmail.com" +
+    window.location.href =
+  "mailto:ceopphisindh@gmail.com" +
   "?subject=Request%20for%20Salary%20Review" +
   "&body=" + body;
     }
